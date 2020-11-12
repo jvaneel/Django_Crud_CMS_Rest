@@ -1,0 +1,266 @@
+<html>
+   <head>
+      <title>Angular JS Table</title>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+      <style>
+         table, th , td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+         }
+
+         table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+         }
+
+         table tr:nth-child(even) {
+            background-color: #ffffff;
+         }
+      </style>
+   </head>
+
+   <body>
+
+      <div ng-app = "mainApp" ng-controller = "studentController">
+         <br>
+
+         <input type="button" ng-click="isShowHide('show')" value="Show Upper Div">
+         <input type="button" ng-click="isShowHide('hide')" value="Show Lower Div">
+         <br/>
+         <div ng-show="showval">
+            <br>
+            <table border = "0" >
+               <tr>
+                  <td>Enter first name:</td>
+                  <td><input type = "text" ng-value = "firstname"></td>
+               </tr>
+               <tr>
+                  <td>Enter last name: </td>
+                  <td>
+                     <input type = "text" ng-model = "lastname">
+                  </td>
+               </tr>
+               <tr>
+                  <td>Name: </td>
+                  <td>{{firstname + " " + lastname}}</td>
+               </tr>
+            </table>
+
+            <table>
+               <td>Subject:</td>
+               <div>
+                  <tr>
+                     <tr>
+                        <th>Name</th>
+                        <th>Marks</th>
+                     </tr>
+                     <tr>
+                        <td>Physics</td>
+                        <td>{{ physics }}</td>
+                  <tr>
+                        <td>Chemistry</td>
+                        <td>{{ chemistry }}</td>
+                     <tr>
+                        <td>Maths</td>
+                        <td>{{ math }}</td>
+                     <tr>
+                        <td>English</td>
+                        <td>{{ english }}</td>
+                     <tr>
+                        <td>Hindi</td>
+                        <td>{{ hindi }}</td>
+
+                        <tr>
+                           <td>Total Marks: </td>
+                           <td>{{physics + chemistry + maths + english + hindi}}</td >
+                        </tr>
+                     </tr>
+
+                  </tr>
+               </div>
+            </table>
+         </div>
+         <br>
+         <table ng-show="show">
+            <tr>
+               <th>FirstName</th>
+               <th>Last Name</th>
+               <th>Email</th>
+               <th>Address</th>
+               <th>Country</th>
+               <th>Full Address</th>
+               <th>Physics</th>
+               <th>Chemistry</th>
+               <th>Maths</th>
+               <th>English</th>
+               <th>Hindi</th>
+            </tr>
+            <tr>
+               <td>{{ firstname }}</td>
+               <td>{{ lastname }}</td>
+               <td>{{ email }}</td>
+               <td>{{ address }}</td>
+               <td>{{ country }}</td>
+               <td>{{ address +' '+ country }}</td>
+               <td>{{ physics }}</td>
+               <td>{{ chemistry }}</td>
+               <td>{{ math }}</td>
+               <td>{{ english }}</td>
+               <td>{{ hindi }}</td>
+            </tr>
+         </table>
+
+         <br>
+            <div ng-hide="hideval">
+               <table>
+                  <tr>
+                     <td>Users:</td>
+                     <td>
+                        <table>
+                           <tr>
+                              <th>FirstName</th>
+                              <th>Last Name</th>
+                              <th>Email</th>
+                              <th>Address</th>
+                              <th>Country</th>
+                              <th>Full Address</th>
+                              <th>Physics</th>
+                              <th>Chemistry</th>
+                              <th>Maths</th>
+                              <th>English</th>
+                              <th>Hindi</th>
+                              <th>Details</th>
+                           </tr>
+                           <tr ng-repeat = "user in student.users ">
+                              <td>{{ user.firstname }}</td>
+                              <td>{{ user.lastname }}</td>
+                              <td>{{ user.email }}</td>
+                              <td>{{ user.address }}</td>
+                              <td>{{ user.country }}</td>
+                              <td ng-if="user.address=='' || user.country==''">{{ user.address + ' ' + user.country }}</td>
+                              <td ng-if="user.address!='' && user.country!=''">{{ user.address + ',' + user.country }}</td>
+                              <td>{{ user.physics }}</td>
+                              <td>{{ user.chemistry }}</td>
+                              <td>{{ user.math }}</td>
+                              <td>{{ user.english }}</td>
+                              <td>{{ user.hindi }}</td>
+                               <td><input type="button" value="Get Details"  ng-click="SetDetails($index); isShow('show')" /></td>
+                           </tr>
+                        </table>
+                     </td>
+                  </tr>
+               </table>
+            </div>
+
+      </div>
+
+      <script>
+         var mainApp = angular.module("mainApp", []);
+
+         mainApp.controller('studentController', function($scope) {
+
+            $scope.student = {
+               firstName: "Mahesh",
+               lastName: "Parashar",
+               fees:500,
+
+               subjects:[
+                  {name:'Physics',marks:15},
+                  {name:'Chemistry',marks:80},
+                  {name:'Math',marks:65},
+                  {name:'English',marks:75},
+                  {name:'Hindi',marks:99}
+               ],
+
+               users:[
+                  {firstname:"Jay",lastname:"Pandya",email:"abc@gmail.com",address:"maninagar",country:"India", physics:100, chemistry:80, math:90, english:85, hindi:70},
+                  {firstname:'Ram',lastname:"Sharma",email:"def@gmail.com",address:"nehrunagar",country:"France",physics:84, chemistry:83, math:94, english:65, hindi:99},
+                  {firstname:"Akshay",lastname:"Raina",email:"efg@gmail.com",address:"prahladnagar",country:"USA",physics:91, chemistry:78, math:45, english:56, hindi:65},
+                  {firstname:"Ajay",lastname:"Kohli",email:"hij@gmail.com",address:"",country:"Japan",physics:55, chemistry:66, math:77, english:88, hindi:99},
+                  {firstname:"Rohit",lastname:"Kumar",email:"klm@gmail.com",address:"makarba",country:"",physics:67, chemistry:79, math:82, english:93, hindi:55},
+
+               ],
+
+
+               fullName: function() {
+                  var studentObject;
+                  studentObject = $scope.student;
+                  return studentObject.firstName + " " + studentObject.lastName;
+               }
+
+
+
+         };
+
+         $scope.GetDetails = function (index) {
+         var firstname = $scope.student.users[index].firstname;
+         var lastname = $scope.student.users[index].lastname;
+         var email= $scope.student.users[index].email;
+         var address= $scope.student.users[index].address;
+         var country= $scope.student.users[index].country;
+         var physics= $scope.student.users[index].physics;
+         var chemistry= $scope.student.users[index].chemistry;
+         var math= $scope.student.users[index].math;
+         var english= $scope.student.users[index].english;
+         var hindi= $scope.student.users[index].hindi;
+
+
+         };
+         $scope.SetDetails = function (index) {
+            $scope.firstname = $scope.student.users[index].firstname;
+            $scope.lastname = $scope.student.users[index].lastname;
+            $scope.physics= $scope.student.users[index].physics;
+            $scope.chemistry= $scope.student.users[index].chemistry;
+            $scope.math= $scope.student.users[index].math;
+            $scope.english= $scope.student.users[index].english;
+            $scope.hindi= $scope.student.users[index].hindi;
+            $scope.email= $scope.student.users[index].email;
+            $scope.address= $scope.student.users[index].address;
+            $scope.country= $scope.student.users[index].country;
+
+
+<!--            percentage: function() {-->
+<!--            var totalMarks=0;-->
+<!--            var subjects = $scope.s.subjects;-->
+<!--            var totalSubjects = subjects.length;-->
+<!--            for (var i = 0; i < totalSubjects; i++) {-->
+<!--                totalMarks += parseInt(subjects[i].marks);-->
+<!--			   }-->
+<!--		    return totalMarks;-->
+<!--            }-->
+
+         };
+
+
+         $scope.show = false;
+         $scope.isShow = function (param) {
+         if (param == "show") {
+         $scope.show = true;
+         }
+         else {
+         $scope.show = false;
+         }
+         }
+
+         $scope.showval = false;
+         $scope.hideval = true;
+         $scope.isShowHide = function (param) {
+         if (param == "show") {
+         $scope.showval = true;
+         $scope.hideval = true;
+         }
+         else if (param == "hide") {
+         $scope.showval = false;
+         $scope.hideval = false;
+         }
+         else {
+         $scope.showval = true;
+         $scope.hideval = false;
+         }
+         }
+         });
+      </script>
+
+   </body>
+</html>

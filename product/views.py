@@ -13,13 +13,11 @@ from django.contrib.auth.forms import UserCreationForm
 from .forms import UserForm
 # from sekizai.context import SekizaiContext
 #from django.template import RequestContext
-# from django.contrib.auth.models import User
-from rest_framework import viewsets
-from rest_framework import permissions
-from .serializers import UserSerializer, ProductSerializer, CustomUserSerializer
+from .serializers import UserSerializer, ProductSerializer, CustomUserSerializer, AngularSerializer
 import django_filters.rest_framework
-from rest_framework import generics
-from rest_framework import filters
+from rest_framework import generics, filters, viewsets, permissions
+
+
 # Create your views here.
 
 
@@ -57,9 +55,18 @@ class CustomUserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('firstname')
     serializer_class = CustomUserSerializer
 
+class AngularViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('firstname')
+    serializer_class = AngularSerializer
+
+
 
 def index(request):
     return render(request, 'product/customTable.html')
+
+
+def angulardata(request):
+    return render(request,'product/angulardata.html')
 
 
 def indexpage(request):

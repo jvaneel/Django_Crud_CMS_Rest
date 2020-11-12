@@ -6,7 +6,7 @@ class UserSerializer(serializers.ModelSerializer):
     products = serializers.StringRelatedField(many=True)
     class Meta:
         model = User
-        fields = ['id','firstname', 'lastname', 'mobile', 'birthdate', 'city', 'email', 'products']
+        fields = ['id', 'firstname', 'lastname', 'mobile', 'birthdate', 'city', 'email', 'products']
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -23,4 +23,11 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id','firstname', 'lastname', 'mobile', 'birthdate', 'city', 'email', 'products']
+        fields = ['id', 'firstname', 'lastname', 'mobile', 'birthdate', 'city', 'email', 'products']
+
+class AngularSerializer(serializers.ModelSerializer):
+    products = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = User
+        fields = ['id', 'firstname', 'lastname', 'mobile', 'birthdate', 'city', 'email', 'products']

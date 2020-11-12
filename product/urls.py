@@ -9,6 +9,8 @@ router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'products', views.ProductViewSet)
 router.register(r'customuser', views.CustomUserViewSet)
+router.register(r'angulardata', views.AngularViewSet)
+
 
 urlpatterns = [
 
@@ -17,6 +19,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('customuser/', views.index, name='customuser'),
+    path('angulardata/', views.angulardata),
     path('signup/', views.signup_view, name="signup"),
     path('login/', views.login_view,name="login"),
     path("logout/",views.logout_view,name="logout"),
