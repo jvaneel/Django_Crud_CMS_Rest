@@ -1,4 +1,4 @@
-#Project Description
+# Project Description
 
 The Project is built on Python-Django Framework
 
@@ -12,7 +12,7 @@ The User/Admin Can add Django cms plugins and can also add Custom Plugins.
 
 The Project also have rest APIs where user can list, add, update, delete, search and filter the Products
 
-##Prerequisites
+## Prerequisites
 
 - Python 3 or greater versions
 - MySql
