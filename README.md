@@ -40,6 +40,7 @@ Creating a virtual python environment dedicated for this application is strongly
 
         $ cd folder_name
         $ python --version
+- Run git checkout master to switch to master branch
         
 
 3. Run `pip install -r requirements.txt`
