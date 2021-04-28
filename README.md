@@ -21,8 +21,9 @@ The Project also have rest APIs where user can list, add, update, delete, search
 
 Creating a virtual python environment dedicated for this application is strongly recommended to prevent your local system from breaking unexpectedly.
 
-$ pyenv install 3.6.9
-$ pyenv virtualenv 3.6.9 environment_name
+- pyenv install 3.6.9
+- pyenv virtualenv 3.6.9 environment_name
+- pyenv activate environment_name
 
 ### Setting up
 
